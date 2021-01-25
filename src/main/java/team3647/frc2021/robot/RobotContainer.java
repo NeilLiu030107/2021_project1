@@ -30,11 +30,10 @@ public class RobotContainer {
     
 
     private final Drivetrain m_drivetrain = new Drivetrain(Constants.cDrivetrain.leftMasterConfig,
-            Constants.cDrivetrain.rightMasterConfig, Constants.cDrivetrain.leftSlaveConfig,
-            Constants.cDrivetrain.rightSlaveConfig, Constants.cDrivetrain.leftMasterPIDConfig,
-            Constants.cDrivetrain.rightMasterPIDConfig,
-            Constants.cDrivetrain.kWheelDiameter, Constants.cDrivetrain.kS,
-            Constants.cDrivetrain.kV, Constants.cDrivetrain.kA);
+            Constants.cDrivetrain.rightMasterConfig, Constants.cDrivetrain.leftSlave1Config,
+            Constants.cDrivetrain.rightSlave1Config, Constants.cDrivetrain.leftMasterPIDConfig, 
+            Constants.cDrivetrain.rightMasterPIDConfig, Constants.cDrivetrain.kWheelDiameter, 
+            Constants.cDrivetrain.kS, Constants.cDrivetrain.kV, Constants.cDrivetrain.kA);
 
     private final CommandScheduler m_commandScheduler = CommandScheduler.getInstance();
 

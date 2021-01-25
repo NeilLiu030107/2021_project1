@@ -25,9 +25,9 @@ import team3647.lib.wpi.Timer;
 
 public class Drivetrain implements PeriodicSubsystem{
     private CANSparkMax leftMaster;
-    private CANSparkMax leftSlave;
+    private CANSparkMax leftSlave1;
     private CANSparkMax rightMaster;
-    private CANSparkMax rightSlave;
+    private CANSparkMax rightSlave1;
     private CANEncoder leftEncoder;
     private CANEncoder rightEncoder;
     private final Configuration m_leftMasterConfig;
@@ -50,8 +50,8 @@ public class Drivetrain implements PeriodicSubsystem{
     private final SimpleMotorFeedforward feedforward;
 
     public Drivetrain(Configuration leftMasterConfig, Configuration rightMasterConfig,
-    Configuration leftSlaveConfig, Configuration rightSlaveConfig, 
-    ClosedLoopConfig leftMasterPIDConfig, ClosedLoopConfig rightMasterPIDConfig,
+    Configuration leftSlave1Config, Configuration rightSlave1Config,
+     ClosedLoopConfig leftMasterPIDConfig, ClosedLoopConfig rightMasterPIDConfig,
     double kWheelDiameterMeters,double kS, double kV, double kA){
 
         m_leftMasterConfig = leftMasterConfig;
@@ -62,11 +62,10 @@ public class Drivetrain implements PeriodicSubsystem{
 
         leftMaster = SparkMaxFactory.createSparkMax(m_leftMasterConfig);
         rightMaster = SparkMaxFactory.createSparkMax(m_rightMasterConfig);
-        leftMaster.setInverted(false);
-        rightMaster.setInverted(true);
+        
 
-        leftSlave = SparkMaxFactory.createSparkMaxFollower(leftMaster, leftSlaveConfig);
-        rightSlave = SparkMaxFactory.createSparkMaxFollower(rightMaster, rightSlaveConfig);
+        leftSlave1 = SparkMaxFactory.createSparkMaxFollower(leftMaster, leftSlave1Config);
+        rightSlave1 = SparkMaxFactory.createSparkMaxFollower(rightMaster, rightSlave1Config);
 
         leftEncoder=leftMaster.getEncoder();
         rightEncoder=rightMaster.getEncoder();
@@ -241,8 +240,8 @@ public class Drivetrain implements PeriodicSubsystem{
     public synchronized void end(){
         leftMaster.stopMotor();
         rightMaster.stopMotor();
-        leftSlave.stopMotor();
-        rightSlave.stopMotor();
+        leftSlave1.stopMotor();
+        rightSlave1.stopMotor();
         periodicIO.leftOutput = 0;
         periodicIO.rightOutput = 0;
         periodicIO.leftFeedForward = 0;
@@ -349,10 +348,10 @@ public class Drivetrain implements PeriodicSubsystem{
         SparkMaxUtil.checkError(rightMaster.setIdleMode(IdleMode.kCoast),
                 m_timeStamp + " Coudln't set right master to Coast mode");
 
-        SparkMaxUtil.checkError(leftSlave.setIdleMode(IdleMode.kCoast),
-                m_timeStamp + " Coudln't set left slave to Coast mode");
-        SparkMaxUtil.checkError(rightSlave.setIdleMode(IdleMode.kCoast),
-                m_timeStamp + " Coudln't set right slave to Coast mode");
+        SparkMaxUtil.checkError(leftSlave1.setIdleMode(IdleMode.kCoast),
+                m_timeStamp + " Coudln't set left slave 1 to Coast mode");
+        SparkMaxUtil.checkError(rightSlave1.setIdleMode(IdleMode.kCoast),
+                m_timeStamp + " Coudln't set right slave 1 to Coast mode");
     }
 
     public synchronized void setToBrake() {

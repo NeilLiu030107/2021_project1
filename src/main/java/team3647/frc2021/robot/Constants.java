@@ -29,9 +29,9 @@ public class Constants {
     public static class cDrivetrain {
         // CAN id
         public static final int leftMasterPin = 1;
-        public static final int leftSlavePin = 2;
+        public static final int leftSlave1Pin = 2;
         public static final int rightMasterPin = 3;
-        public static final int rightSlavePin = 4;
+        public static final int rightSlave1Pin = 4;
         public static final int stallCurrent = 35;
         public static final int maxCurrent = 60;
 
@@ -78,11 +78,11 @@ public class Constants {
                         .currentLimiting(true, maxCurrent, stallCurrent).idleMode(IdleMode.kBrake)
                         .voltageCompensation(true, 12.0);
 
-        public static final SparkMaxFactory.Configuration leftSlaveConfig =
-                SparkMaxFactory.Configuration.mirrorWithCANID(leftMasterConfig, leftSlavePin);
+        public static final SparkMaxFactory.Configuration leftSlave1Config =
+                SparkMaxFactory.Configuration.mirrorWithCANID(leftMasterConfig, leftSlave1Pin);
 
-        public static final SparkMaxFactory.Configuration rightSlaveConfig =
-                SparkMaxFactory.Configuration.mirrorWithCANID(rightMasterConfig, rightSlavePin);
+        public static final SparkMaxFactory.Configuration rightSlave1Config =
+                SparkMaxFactory.Configuration.mirrorWithCANID(rightMasterConfig, rightSlave1Pin);
 
         public static final ClosedLoopConfig leftMasterPIDConfig = new ClosedLoopConfig()
                 .encoderVelocityToRPM(gearboxReduction).encoderTicksToUnits(neoRotationsToMeters)
