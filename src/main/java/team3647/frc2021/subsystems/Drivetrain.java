@@ -26,8 +26,10 @@ import team3647.lib.wpi.Timer;
 public class Drivetrain implements PeriodicSubsystem{
     private CANSparkMax leftMaster;
     private CANSparkMax leftSlave1;
+    private CANSparkMax leftSlave2;
     private CANSparkMax rightMaster;
     private CANSparkMax rightSlave1;
+    private CANSparkMax rightSlave2;
     private CANEncoder leftEncoder;
     private CANEncoder rightEncoder;
     private final Configuration m_leftMasterConfig;
@@ -50,7 +52,8 @@ public class Drivetrain implements PeriodicSubsystem{
     private final SimpleMotorFeedforward feedforward;
 
     public Drivetrain(Configuration leftMasterConfig, Configuration rightMasterConfig,
-    Configuration leftSlave1Config, Configuration rightSlave1Config,
+    Configuration leftSlave1Config, Configuration rightSlave1Config, 
+    Configuration leftSlave2Config, Configuration rightSlave2Config,
      ClosedLoopConfig leftMasterPIDConfig, ClosedLoopConfig rightMasterPIDConfig,
     double kWheelDiameterMeters,double kS, double kV, double kA){
 
@@ -66,6 +69,8 @@ public class Drivetrain implements PeriodicSubsystem{
 
         leftSlave1 = SparkMaxFactory.createSparkMaxFollower(leftMaster, leftSlave1Config);
         rightSlave1 = SparkMaxFactory.createSparkMaxFollower(rightMaster, rightSlave1Config);
+        leftSlave2 = SparkMaxFactory.createSparkMaxFollower(leftMaster, leftSlave2Config);
+        rightSlave2 = SparkMaxFactory.createSparkMaxFollower(rightMaster, rightSlave2Config);
 
         leftEncoder=leftMaster.getEncoder();
         rightEncoder=rightMaster.getEncoder();
@@ -241,7 +246,9 @@ public class Drivetrain implements PeriodicSubsystem{
         leftMaster.stopMotor();
         rightMaster.stopMotor();
         leftSlave1.stopMotor();
+        leftSlave2.stopMotor();
         rightSlave1.stopMotor();
+        rightSlave2.stopMotor();
         periodicIO.leftOutput = 0;
         periodicIO.rightOutput = 0;
         periodicIO.leftFeedForward = 0;
@@ -352,6 +359,10 @@ public class Drivetrain implements PeriodicSubsystem{
                 m_timeStamp + " Coudln't set left slave 1 to Coast mode");
         SparkMaxUtil.checkError(rightSlave1.setIdleMode(IdleMode.kCoast),
                 m_timeStamp + " Coudln't set right slave 1 to Coast mode");
+        SparkMaxUtil.checkError(leftSlave2.setIdleMode(IdleMode.kCoast),
+                m_timeStamp + " Coudln't set left slave 2 to Coast mode");
+        SparkMaxUtil.checkError(rightSlave2.setIdleMode(IdleMode.kCoast),
+                m_timeStamp + " Coudln't set right slave 2 to Coast mode");
     }
 
     public synchronized void setToBrake() {

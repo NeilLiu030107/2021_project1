@@ -30,8 +30,10 @@ public class Constants {
         // CAN id
         public static final int leftMasterPin = 1;
         public static final int leftSlave1Pin = 2;
+        public static final int leftSlave2Pin = 5;
         public static final int rightMasterPin = 3;
         public static final int rightSlave1Pin = 4;
+        public static final int rightSlave2Pin = 6;
         public static final int stallCurrent = 35;
         public static final int maxCurrent = 60;
 
@@ -80,9 +82,15 @@ public class Constants {
 
         public static final SparkMaxFactory.Configuration leftSlave1Config =
                 SparkMaxFactory.Configuration.mirrorWithCANID(leftMasterConfig, leftSlave1Pin);
+        
+                public static final SparkMaxFactory.Configuration leftSlave2Config =
+                SparkMaxFactory.Configuration.mirrorWithCANID(leftMasterConfig, leftSlave2Pin);
 
         public static final SparkMaxFactory.Configuration rightSlave1Config =
                 SparkMaxFactory.Configuration.mirrorWithCANID(rightMasterConfig, rightSlave1Pin);
+
+        public static final SparkMaxFactory.Configuration rightSlave2Config =
+                SparkMaxFactory.Configuration.mirrorWithCANID(rightMasterConfig, rightSlave2Pin);
 
         public static final ClosedLoopConfig leftMasterPIDConfig = new ClosedLoopConfig()
                 .encoderVelocityToRPM(gearboxReduction).encoderTicksToUnits(neoRotationsToMeters)

@@ -31,7 +31,8 @@ public class RobotContainer {
 
     private final Drivetrain m_drivetrain = new Drivetrain(Constants.cDrivetrain.leftMasterConfig,
             Constants.cDrivetrain.rightMasterConfig, Constants.cDrivetrain.leftSlave1Config,
-            Constants.cDrivetrain.rightSlave1Config, Constants.cDrivetrain.leftMasterPIDConfig, 
+            Constants.cDrivetrain.rightSlave1Config, Constants.cDrivetrain.leftSlave2Config, 
+            Constants.cDrivetrain.rightSlave2Config, Constants.cDrivetrain.leftMasterPIDConfig, 
             Constants.cDrivetrain.rightMasterPIDConfig, Constants.cDrivetrain.kWheelDiameter, 
             Constants.cDrivetrain.kS, Constants.cDrivetrain.kV, Constants.cDrivetrain.kA);
 
